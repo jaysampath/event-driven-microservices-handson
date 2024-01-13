@@ -1,6 +1,6 @@
 package com.microservices.demo.source.to.kafka.service;
 
-import com.microservices.demo.source.to.kafka.service.config.SourceToKafkaServiceConfigData;
+import com.microservices.demo.config.SourceToKafkaServiceConfigData;
 import com.microservices.demo.source.to.kafka.service.runner.StreamRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
