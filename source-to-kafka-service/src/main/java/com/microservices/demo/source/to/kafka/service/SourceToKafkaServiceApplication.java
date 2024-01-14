@@ -1,6 +1,7 @@
 package com.microservices.demo.source.to.kafka.service;
 
 import com.microservices.demo.config.SourceToKafkaServiceConfigData;
+import com.microservices.demo.source.to.kafka.service.init.StreamInitializer;
 import com.microservices.demo.source.to.kafka.service.runner.StreamRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,13 +18,13 @@ public class SourceToKafkaServiceApplication implements CommandLineRunner {
 
     private static final Logger LOG = LoggerFactory.getLogger(SourceToKafkaServiceApplication.class);
 
-    private final SourceToKafkaServiceConfigData sourceToKafkaServiceConfigData;
+    private final StreamInitializer streamInitializer;
 
     private final StreamRunner streamRunner;
 
-    public SourceToKafkaServiceApplication(SourceToKafkaServiceConfigData configData,
+    public SourceToKafkaServiceApplication(StreamInitializer streamInitializer,
                                             StreamRunner runner) {
-        this.sourceToKafkaServiceConfigData = configData;
+        this.streamInitializer = streamInitializer;
         this.streamRunner = runner;
     }
 
@@ -34,8 +35,7 @@ public class SourceToKafkaServiceApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         LOG.info("App starts...");
-        LOG.info(Arrays.toString(sourceToKafkaServiceConfigData.getTweetKeywords().toArray(new String[] {})));
-        LOG.info(sourceToKafkaServiceConfigData.getWelcomeMessage());
+        streamInitializer.init();
         streamRunner.start();
     }
 }

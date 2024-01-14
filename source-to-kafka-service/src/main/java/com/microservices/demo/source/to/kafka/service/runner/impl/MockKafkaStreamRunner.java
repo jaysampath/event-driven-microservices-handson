@@ -1,7 +1,10 @@
 package com.microservices.demo.source.to.kafka.service.runner.impl;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.microservices.demo.config.SourceToKafkaServiceConfigData;
+import com.microservices.demo.source.to.kafka.service.listener.TweetKafkaStatusListener;
+import com.microservices.demo.source.to.kafka.service.model.Status;
 import com.microservices.demo.source.to.kafka.service.runner.StreamRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +24,8 @@ public class MockKafkaStreamRunner implements StreamRunner {
     private static final Logger LOG = LoggerFactory.getLogger(MockKafkaStreamRunner.class);
 
     private final SourceToKafkaServiceConfigData sourceToKafkaServiceConfigData;
+
+    private final TweetKafkaStatusListener tweetKafkaStatusListener;
 
     private static final Random RANDOM = new Random();
 
@@ -58,8 +63,10 @@ public class MockKafkaStreamRunner implements StreamRunner {
 
     private static final String TWEET_STATUS_DATE_FORMAT = "EEE MMM dd HH:mm:ss zzz yyyy";
 
-    public MockKafkaStreamRunner(SourceToKafkaServiceConfigData configData) {
+    public MockKafkaStreamRunner(SourceToKafkaServiceConfigData configData,
+                                 TweetKafkaStatusListener tweetKafkaStatusListener) {
         this.sourceToKafkaServiceConfigData = configData;
+        this.tweetKafkaStatusListener = tweetKafkaStatusListener;
     }
 
     @Override
@@ -78,6 +85,9 @@ public class MockKafkaStreamRunner implements StreamRunner {
                 while (true) {
                     String formattedTweetAsRawJson = getFormattedTweet(keywords, minTweetLength, maxTweetLength);
                     LOG.info("Generated Tweet- {}", formattedTweetAsRawJson);
+                    ObjectMapper objectMapper = new ObjectMapper();
+                    Status status = objectMapper.readValue(formattedTweetAsRawJson, Status.class);
+                    tweetKafkaStatusListener.onStatus(status);
                     sleep(sleepTimeMs);
                 }
             } catch (Exception e) {
