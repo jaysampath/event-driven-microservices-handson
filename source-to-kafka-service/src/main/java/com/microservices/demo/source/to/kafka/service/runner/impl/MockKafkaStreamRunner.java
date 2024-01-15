@@ -28,6 +28,8 @@ public class MockKafkaStreamRunner implements StreamRunner {
 
     private final TweetKafkaStatusListener tweetKafkaStatusListener;
 
+    private final ObjectMapper objectMapper;
+
     private static final Random RANDOM = new Random();
 
     private static final String[] WORDS = new String[]{
@@ -68,6 +70,8 @@ public class MockKafkaStreamRunner implements StreamRunner {
                                  TweetKafkaStatusListener tweetKafkaStatusListener) {
         this.sourceToKafkaServiceConfigData = configData;
         this.tweetKafkaStatusListener = tweetKafkaStatusListener;
+        this.objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
     }
 
     @Override
@@ -86,8 +90,6 @@ public class MockKafkaStreamRunner implements StreamRunner {
                 while (true) {
                     String formattedTweetAsRawJson = getFormattedTweet(keywords, minTweetLength, maxTweetLength);
                     LOG.info("Generated Tweet- {}", formattedTweetAsRawJson);
-                    ObjectMapper objectMapper = new ObjectMapper();
-                    objectMapper.registerModule(new JavaTimeModule());
                     Status status = objectMapper.readValue(formattedTweetAsRawJson, Status.class);
                     tweetKafkaStatusListener.onStatus(status);
                     sleep(sleepTimeMs);
