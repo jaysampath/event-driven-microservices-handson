@@ -2,7 +2,6 @@ package com.microservices.demo.source.to.kafka.service.runner.impl;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.microservices.demo.config.SourceToKafkaServiceConfigData;
 import com.microservices.demo.source.to.kafka.service.listener.TweetKafkaStatusListener;
 import com.microservices.demo.source.to.kafka.service.model.Status;
@@ -67,11 +66,11 @@ public class MockKafkaStreamRunner implements StreamRunner {
     private static final String TWEET_STATUS_DATE_FORMAT = "EEE MMM dd HH:mm:ss zzz yyyy";
 
     public MockKafkaStreamRunner(SourceToKafkaServiceConfigData configData,
-                                 TweetKafkaStatusListener tweetKafkaStatusListener) {
+                                 TweetKafkaStatusListener tweetKafkaStatusListener,
+                                 ObjectMapper objectMapper) {
         this.sourceToKafkaServiceConfigData = configData;
         this.tweetKafkaStatusListener = tweetKafkaStatusListener;
-        this.objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new JavaTimeModule());
+        this.objectMapper = objectMapper;
     }
 
     @Override
