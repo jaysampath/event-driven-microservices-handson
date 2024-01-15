@@ -2,6 +2,7 @@ package com.microservices.demo.source.to.kafka.service.runner.impl;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.microservices.demo.config.SourceToKafkaServiceConfigData;
 import com.microservices.demo.source.to.kafka.service.listener.TweetKafkaStatusListener;
 import com.microservices.demo.source.to.kafka.service.model.Status;
@@ -55,7 +56,7 @@ public class MockKafkaStreamRunner implements StreamRunner {
     };
 
     private static final String tweetAsRawJson = "{" +
-            "\"created_at\":\"{0}\"," +
+            "\"createdAt\":\"{0}\"," +
             "\"id\":\"{1}\"," +
             "\"text\":\"{2}\"," +
             "\"user\":{\"id\":\"{3}\"}" +
@@ -86,6 +87,7 @@ public class MockKafkaStreamRunner implements StreamRunner {
                     String formattedTweetAsRawJson = getFormattedTweet(keywords, minTweetLength, maxTweetLength);
                     LOG.info("Generated Tweet- {}", formattedTweetAsRawJson);
                     ObjectMapper objectMapper = new ObjectMapper();
+                    objectMapper.registerModule(new JavaTimeModule());
                     Status status = objectMapper.readValue(formattedTweetAsRawJson, Status.class);
                     tweetKafkaStatusListener.onStatus(status);
                     sleep(sleepTimeMs);
