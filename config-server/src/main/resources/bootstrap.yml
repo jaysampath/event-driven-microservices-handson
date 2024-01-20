@@ -8,7 +8,7 @@ spring:
           uri: D:\workspace\courses\Event-Driven Microservices - Springboot, Kafka and Elastic Search\microservices-demo\config-server-repository
           default-label: main
           username: jaysampath
-          password: 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
+          password: something
           clone-on-start: true
     fail-fast: true
   security:
