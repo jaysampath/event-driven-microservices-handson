@@ -5,13 +5,13 @@ spring:
     config:
       server:
         git:
-          uri: D:\workspace\courses\Event-Driven Microservices - Springboot, Kafka and Elastic Search\microservices-demo\config-server-repository
+          uri: https://github.com/jaysampath/microservices-spring-cloud-config-server-repository
           default-label: main
           username: jaysampath
-          password: something
+          password: '{cipher}5b57bb470f8e82cfe960b7606cb35b287be0a453c514eea0ee45c7b6ff2c1edc94aa106d2c92c5f4372ba50093356b0ced90e6d9e126f3c115b819c1d84441d3'
           clone-on-start: true
     fail-fast: true
   security:
     user:
       name: spring_cloud_user
-      password: '{cipher}c0d85293cb01a46b3b629a12e5620f4e9d00d4ede8bdf248cf5b83e23f4536501e4b34a8d56b7a34fcee17aa01d05330'
+      password: '{cipher}68895af0e4a2eac3c13f518ccfe8eec606495b47d5a16e940a952cbca363be5d7e4bb9d08e7be12a4c0d825992bf48e6'
