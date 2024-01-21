@@ -8,4 +8,4 @@ spring:
       name: source-to-kafka-service,config-client
       uri: http://localhost:8888
       username: spring_cloud_user
-      password: '{cipher}b9c205825b77df788a79fac34dd016da8b819804b97f6541e34a3cf2e242b3adbe9846a459010589765329df79a18695'
+      password: '{cipher}80f13a387e56bc6b9e6ca1202d8ae3f228064b54675162035b9a807944829b040e2ced14c737ecb25ed61324e42698bc'
