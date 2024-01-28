@@ -1,6 +1,6 @@
 package com.microservices.demo.elastic.query.client.service.impl;
 
-import com.microservices.demo.common.util.CollectionsUtil;
+import com.microservices.demo.elastic.query.web.client.common.util.CollectionsUtil;
 import com.microservices.demo.elastic.model.index.impl.TwitterIndexModel;
 import com.microservices.demo.elastic.query.client.exception.ElasticQueryClientException;
 import com.microservices.demo.elastic.query.client.repository.TwitterElasticsearchQueryRepository;
