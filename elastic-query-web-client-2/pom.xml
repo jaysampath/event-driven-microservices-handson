@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>elastic-query-web-client</artifactId>
+    <artifactId>elastic-query-web-client-2</artifactId>
 
     <dependencies>
         <dependency>
@@ -41,10 +41,6 @@
             <artifactId>spring-boot-starter-oauth2-client</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
@@ -74,7 +70,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <image>
-                        <name>${project.groupId}/elastic.query.web.client:${project.version}</name>
+                        <name>${project.groupId}/elastic.query.web.client.2:${project.version}</name>
                     </image>
                 </configuration>
                 <executions>
