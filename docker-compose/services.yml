@@ -88,6 +88,9 @@ services:
       - "SERVER_PORT=8183"
       - "SERVER_SERVLET_CONTEXT-PATH=/elastic-query-service"
       - "SPRING_CLOUD_CONFIG_URI=http://config-server:8888"
+      - "SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER-URI=http://keycloak-authorization-server:9091/auth/realms/microservices-realm"
+      - "SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK-SET-URI=http://keycloak-authorization-server:9091/auth/realms/microservices-realm/protocol/openid-connect/certs"
+      - "SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal:5432/postgres?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true"
       - "ENCRYPT_KEY=${ENCRYPT_KEY}"
     networks:
       - ${GLOBAL_NETWORK:-services}
@@ -117,6 +120,10 @@ services:
       - "SERVER_PORT=8184"
       - "SERVER_SERVLET_CONTEXT-PATH=/elastic-query-service"
       - "SPRING_CLOUD_CONFIG_URI=http://config-server:8888"
+      - "SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUER-URI=http://keycloak-authorization-server:9091/auth/realms/microservices-realm"
+      - "SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK-SET-URI=http://keycloak-authorization-server:9091/auth/realms/microservices-realm/protocol/openid-connect/certs"
+      - "SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal:5432/postgres?currentSchema=public&binaryTransfer=true&reWriteBatchedInserts=true"
+
       - "ENCRYPT_KEY=${ENCRYPT_KEY}"
     networks:
       - ${GLOBAL_NETWORK:-services}
@@ -185,7 +192,7 @@ services:
       - "ELASTIC-QUERY-WEB-CLIENT_WEB-CLIENT_INSTANCES_1_PORT=8185"
       - "ENCRYPT_KEY=${ENCRYPT_KEY}"
       - "SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_KEYCLOAK_ISSUER-URI=http://keycloak-authorization-server:9091/auth/realms/microservices-realm"
-      - "SECURITY_LOGOUT-SUCCESS-URL=http://elastic-query-web-client-1:8186/elastic-query-web-client"
+      - "SECURITY_LOGOUT-SUCCESS-URL=http://elastic-query-web-client-2:8186/elastic-query-web-client"
       - "SECURITY_DEFAULT-CLIENT-REGISTRATION-ID=keycloak"
     networks:
       - ${GLOBAL_NETWORK:-services}
