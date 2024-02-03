@@ -38,6 +38,7 @@ services:
     volumes:
       - "./docker-logs:/workspace/source-to-kafka-service/logs"
       - "./check-config-server-started.sh:/usr/local/bin/check-config-server-started.sh"
+      - "./check-keycloak-server-started.sh:/usr/local/bin/check-keycloak-server-started.sh"
     user: root
     entrypoint: [ "check-config-server-started.sh" ]
     depends_on:
@@ -129,6 +130,7 @@ services:
 #    volumes:
 #      - "./docker-logs:/workspace/elastic-query-service/logs"
 #      - "./check-config-server-started.sh:/usr/local/bin/check-config-server-started.sh"
+#        - "./check-keycloak-server-started.sh:/usr/local/bin/check-keycloak-server-started.sh"
 #    user: root
 #    entrypoint: [ "check-config-server-started.sh" ]
 #    depends_on:
