@@ -40,7 +40,7 @@ public class TwitterElasticQueryService implements ElasticQueryService {
                                       ElasticQueryClient<TwitterIndexModel> queryClient,
                                       ElasticQueryServiceConfigData queryServiceConfigData,
                                       @Qualifier("webClientBuilder")
-                                              WebClient.Builder clientBuilder) {
+                                      WebClient.Builder clientBuilder) {
         this.elasticQueryServiceResponseModelAssembler = assembler;
         this.elasticQueryClient = queryClient;
         this.elasticQueryServiceConfigData = queryServiceConfigData;
@@ -73,8 +73,17 @@ public class TwitterElasticQueryService implements ElasticQueryService {
     private Long getWordCount(String text, String accessToken) {
         if (QueryType.KAFKA_STATE_STORE.getType().equals(elasticQueryServiceConfigData.getWebClient().getQueryType())) {
             return getFromKafkaStateStore(text, accessToken).getWordCount();
+        } else if (QueryType.ANALYTICS_DATABASE.getType().
+                equals(elasticQueryServiceConfigData.getWebClient().getQueryType())) {
+            return getFromAnayticsDatabase(text, accessToken).getWordCount();
         }
         return 0L;
+    }
+
+    private ElasticQueryServiceWordCountResponseModel getFromAnayticsDatabase(String text, String accessToken) {
+        ElasticQueryServiceConfigData.Query queryFromAnalyticsDatabase =
+                elasticQueryServiceConfigData.getQueryFromAnalyticsDatabase();
+        return retrieveResponseModel(text, accessToken, queryFromAnalyticsDatabase);
     }
 
     private ElasticQueryServiceWordCountResponseModel getFromKafkaStateStore(String text, String accessToken) {
