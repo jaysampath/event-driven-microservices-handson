@@ -35,3 +35,5 @@ build/
 .vscode/
 
 config-server-repository/
+
+${HOME}/

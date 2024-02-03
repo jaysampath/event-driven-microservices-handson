@@ -40,7 +40,7 @@ public class TwitterElasticQueryService implements ElasticQueryService {
                                       ElasticQueryClient<TwitterIndexModel> queryClient,
                                       ElasticQueryServiceConfigData queryServiceConfigData,
                                       @Qualifier("webClientBuilder")
-                                      WebClient.Builder clientBuilder) {
+                                              WebClient.Builder clientBuilder) {
         this.elasticQueryServiceResponseModelAssembler = assembler;
         this.elasticQueryClient = queryClient;
         this.elasticQueryServiceConfigData = queryServiceConfigData;
