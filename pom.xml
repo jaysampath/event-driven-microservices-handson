@@ -58,6 +58,10 @@
 		<kafka-streams.version>2.6.0</kafka-streams.version>
 		<kafka-clients.version>2.6.0</kafka-clients.version>
 		<kafka-streams-avro-serde.version>5.5.1</kafka-streams-avro-serde.version>
+
+		<micrometer-registry-prometheus.version>1.5.2</micrometer-registry-prometheus.version>
+
+		<logstash-logback-encoder.version>6.5</logstash-logback-encoder.version>
 	</properties>
 
 	<repositories>
@@ -282,6 +286,12 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-oauth2-client</artifactId>
 				<version>3.0.6</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.micrometer</groupId>
+				<artifactId>micrometer-registry-prometheus</artifactId>
+				<version>${micrometer-registry-prometheus.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
