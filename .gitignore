@@ -37,3 +37,6 @@ build/
 config-server-repository/
 
 ${HOME}/
+
+docker-compose/prometheus/
+docker-compose/grafana/
