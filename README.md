@@ -1,4 +1,4 @@
-# Tweets Stream Microservices
+# Tweets streaming, injecting and querying micro-services using Spring Boot, Kafka and Elastic Search
 
 * Microservices architecture with Spring boot and Spring cloud stack
 * Event-driven microservices with Apache Kafka
